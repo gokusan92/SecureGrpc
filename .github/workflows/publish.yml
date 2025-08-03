@@ -1,0 +1,26 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 9.0.x
+        
+    - name: Build
+      run: dotnet build src/SecureGrpc/SecureGrpc.csproj -c Release
+      
+    - name: Pack
+      run: dotnet pack src/SecureGrpc/SecureGrpc.csproj -c Release
+      
+    - name: Publish to NuGet
+      run: dotnet nuget push src/SecureGrpc/bin/Release/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
