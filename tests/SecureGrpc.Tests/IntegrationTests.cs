@@ -3,6 +3,8 @@ using Xunit;
 
 namespace SecureGrpc.Tests;
 
+[Collection("Integration")]
+[Trait("Category", "Integration")]
 public class IntegrationTests : IAsyncLifetime
 {
     private SecureServer? _server;

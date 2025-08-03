@@ -24,5 +24,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -c Release
       
-    - name: Test
-      run: dotnet test --no-build --verbosity normal -c Release
+    - name: Test (Unit tests only)
+      run: dotnet test --no-build --verbosity normal -c Release --filter "Category!=Integration"
+      # Integration tests require a real gRPC server which is not available in CI
