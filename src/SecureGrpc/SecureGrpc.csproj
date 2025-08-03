@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    
+    <!-- Package Info -->
+    <PackageId>SecureGrpc</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>SecureGrpc Contributors</Authors>
+    <Description>Post-quantum secure gRPC library with ML-KEM and Diffie-Hellman</Description>
+    <PackageTags>grpc;security;post-quantum;mlkem;kyber;encryption;pqc</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/gokusan92/SecureGrpc</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/gokusan92/SecureGrpc</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Use Grpc.Core.Api for compatibility layer -->
+    <PackageReference Include="Grpc.Core.Api" Version="2.65.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.65.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.28.3" />
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+  </ItemGroup>
+
+</Project>

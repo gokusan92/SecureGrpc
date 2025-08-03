@@ -1,0 +1,46 @@
+# Build results
+bin/
+obj/
+out/
+artifacts/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+**/packages/*
+project.lock.json
+project.fragment.lock.json
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# Local settings
+*.local.json
+appsettings.local.json
