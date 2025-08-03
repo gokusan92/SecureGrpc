@@ -1,10 +1,10 @@
 # SecureGrpc 🔐
 
 [![NuGet](https://img.shields.io/nuget/v/SecureGrpc.svg)](https://www.nuget.org/packages/SecureGrpc/)
-[![Build Status](https://github.com/yourusername/SecureGrpc/workflows/Build%20and%20Test/badge.svg)](https://github.com/yourusername/SecureGrpc/actions)
+[![Build Status](https://github.com/gokusan92/SecureGrpc/workflows/Build%20and%20Test/badge.svg)](https://github.com/gokusan92/SecureGrpc/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> ⚠️ **SECURITY WARNING**: This library currently uses `Grpc.Core` which has known vulnerabilities (CVE-2023-32731, CVE-2023-33953). For production use, consider migrating to `Grpc.Net.Client`. See [SECURITY_UPDATE.md](SECURITY_UPDATE.md) for details.
+> ✅ **SECURITY UPDATE**: This library has been migrated from the vulnerable Grpc.Core to the secure **Grpc.Net.Client 2.65.0**. All known vulnerabilities (CVE-2023-32731, CVE-2023-33953) have been fixed!
 
 **Post-quantum secure gRPC communication made ridiculously easy!**
 
@@ -51,13 +51,18 @@ Console.WriteLine($"Server said: {response}");
 ### Add encryption to existing gRPC services
 
 ```csharp
-// Server-side
-var server = new Server()
-    .WithEncryption()  // Add this line!
-    .Services.Add(YourService.BindService(new YourServiceImpl()));
+// Server-side (using ASP.NET Core)
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddGrpc()
+    .AddSecureGrpc();  // Add this line!
+builder.Services.AddSingleton<YourServiceImpl>();
+
+var app = builder.Build();
+app.MapGrpcService<YourServiceImpl>();
+app.Run();
 
 // Client-side  
-var channel = new Channel("localhost", 5001, ChannelCredentials.Insecure)
+var channel = GrpcChannel.ForAddress("https://localhost:5001")
     .WithEncryption();  // Add this line!
 var client = new YourService.YourServiceClient(channel);
 ```
@@ -66,12 +71,13 @@ var client = new YourService.YourServiceClient(channel);
 
 ```csharp
 var channel = "localhost".CreateSecureChannel(5001)
-    .WithCredentials(ChannelCredentials.Insecure)
+    .WithHttpClient()
     .Build();
 ```
 
 ## Features
 
+✅ **No Security Vulnerabilities** - Using secure Grpc.Net.Client 2.65.0  
 ✅ **Zero Configuration** - Works out of the box  
 ✅ **Post-Quantum Secure** - Resistant to quantum computer attacks  
 ✅ **Perfect Forward Secrecy** - Past sessions remain secure  
