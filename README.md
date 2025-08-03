@@ -1,7 +1,6 @@
 # SecureGrpc 🔐
 
 [![NuGet](https://img.shields.io/nuget/v/SecureGrpc.svg)](https://www.nuget.org/packages/SecureGrpc/)
-[![Build Status](https://github.com/gokusan92/SecureGrpc/workflows/Build%20and%20Test/badge.svg)](https://github.com/gokusan92/SecureGrpc/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > ✅ **SECURITY UPDATE**: This library has been migrated from the vulnerable Grpc.Core to the secure **Grpc.Net.Client 2.65.0**. All known vulnerabilities (CVE-2023-32731, CVE-2023-33953) have been fixed!
